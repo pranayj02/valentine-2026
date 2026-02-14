@@ -1,0 +1,924 @@
+/* ==========================================
+   CSS Variables - Minimal Luxe Theme
+   ========================================== */
+:root {
+    /* Colors */
+    --color-bg: #faf9f7;
+    --color-text: #2d2d2d;
+    --color-text-light: #6b6b6b;
+    --color-accent: #ff9ebc;
+    --color-accent-light: #ffc4d6;
+    --color-lavender: #d4c5f9;
+    --color-peach: #ffe5d9;
+    --color-white: #ffffff;
+    --color-shadow: rgba(0, 0, 0, 0.08);
+    --color-shadow-strong: rgba(0, 0, 0, 0.15);
+    
+    /* Gradients */
+    --gradient-dreamy: linear-gradient(135deg, #ffc4d6 0%, #d4c5f9 50%, #ffe5d9 100%);
+    --gradient-balloon-pink: linear-gradient(135deg, #ff9ebc 0%, #ff6b9d 100%);
+    --gradient-balloon-lavender: linear-gradient(135deg, #d4c5f9 0%, #b8a4e8 100%);
+    --gradient-balloon-peach: linear-gradient(135deg, #ffe5d9 0%, #ffc9b3 100%);
+    
+    /* Typography */
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-display: 'Playfair Display', Georgia, serif;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Effects */
+    --shadow-soft: 0 4px 20px var(--color-shadow);
+    --shadow-medium: 0 8px 30px var(--color-shadow-strong);
+    --glow-dreamy: 0 0 30px rgba(255, 158, 188, 0.3);
+}
+
+/* ==========================================
+   Reset & Base Styles
+   ========================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================
+   Container & Layout
+   ========================================== */
+.container {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    padding: var(--spacing-lg);
+}
+
+/* ==========================================
+   Header
+   ========================================== */
+.header {
+    text-align: center;
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+    position: relative;
+    z-index: 10;
+}
+
+.site-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    background: var(--gradient-dreamy);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--spacing-xs);
+    letter-spacing: -0.02em;
+}
+
+.site-subtitle {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    color: var(--color-text-light);
+    font-weight: 300;
+    margin-bottom: var(--spacing-sm);
+}
+
+.hint-text {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* ==========================================
+   Balloons Container
+   ========================================== */
+.balloons-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 60vh;
+    padding: var(--spacing-lg) 0;
+}
+
+/* ==========================================
+   Balloon Styles
+   ========================================== */
+.balloon {
+    position: absolute;
+    cursor: pointer;
+    width: 80px;
+    height: 100px;
+    transition: transform var(--transition-smooth), filter var(--transition-fast);
+    will-change: transform;
+    z-index: 1;
+}
+
+.balloon:hover {
+    transform: scale(1.1) translateY(-5px);
+    filter: brightness(1.1);
+    z-index: 2;
+}
+
+.balloon:focus {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
+    border-radius: 50%;
+}
+
+.balloon.popped {
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.balloon.popped .balloon-shape {
+    transform: scale(0);
+}
+
+.balloon-shape {
+    width: 100%;
+    height: 80%;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: relative;
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--transition-smooth);
+}
+
+/* Balloon color variants */
+.balloon[data-variant="pink"] .balloon-shape {
+    background: var(--gradient-balloon-pink);
+}
+
+.balloon[data-variant="lavender"] .balloon-shape {
+    background: var(--gradient-balloon-lavender);
+}
+
+.balloon[data-variant="peach"] .balloon-shape {
+    background: var(--gradient-balloon-peach);
+}
+
+/* Balloon highlight */
+.balloon-shape::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    width: 30%;
+    height: 30%;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    filter: blur(8px);
+}
+
+/* Balloon string */
+.balloon-string {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--color-text-light), transparent);
+    transform: translateX(-50%);
+}
+
+/* Balloon icon/label */
+.balloon-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    pointer-events: none;
+}
+
+.balloon:hover .balloon-icon {
+    opacity: 0.9;
+}
+
+/* Floating animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+    66% {
+        transform: translateY(-5px) rotate(-2deg);
+    }
+}
+
+.balloon {
+    animation: float 4s ease-in-out infinite;
+}
+
+.balloon:nth-child(2n) {
+    animation-duration: 5s;
+    animation-delay: -1s;
+}
+
+.balloon:nth-child(3n) {
+    animation-duration: 4.5s;
+    animation-delay: -2s;
+}
+
+/* ==========================================
+   Reset Button
+   ========================================== */
+.reset-button {
+    position: fixed;
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: var(--color-white);
+    color: var(--color-text);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: var(--shadow-medium);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: all var(--transition-smooth);
+    z-index: 100;
+}
+
+.reset-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px var(--color-shadow-strong);
+    background: var(--gradient-dreamy);
+    color: var(--color-white);
+}
+
+.reset-button:focus {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.reset-button svg {
+    transition: transform var(--transition-smooth);
+}
+
+.reset-button:hover svg {
+    transform: rotate(180deg);
+}
+
+/* ==========================================
+   Modal Styles
+   ========================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: var(--spacing-md);
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: var(--color-white);
+    border-radius: 24px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--shadow-medium);
+    transform: scale(0.9);
+    transition: transform var(--transition-smooth);
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    background: var(--color-white);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    transition: all var(--transition-fast);
+    z-index: 10;
+}
+
+.modal-close:hover {
+    transform: rotate(90deg);
+    background: var(--color-accent-light);
+}
+
+.modal-close:focus {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.modal-body {
+    padding: var(--spacing-xl);
+}
+
+/* ==========================================
+   Photo Modal
+   ========================================== */
+.photo-modal {
+    text-align: center;
+}
+
+.photo-modal img {
+    width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    margin-bottom: var(--spacing-lg);
+}
+
+.photo-modal .message {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.4;
+}
+
+.photo-modal .date {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    font-style: italic;
+}
+
+.modal-nav {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    margin-top: var(--spacing-lg);
+}
+
+.modal-nav button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--gradient-dreamy);
+    color: var(--color-white);
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.modal-nav button:hover {
+    transform: scale(1.05);
+}
+
+.modal-nav button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ==========================================
+   Video Modal
+   ========================================== */
+.video-modal {
+    text-align: center;
+}
+
+.video-modal video {
+    width: 100%;
+    max-height: 60vh;
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    margin-bottom: var(--spacing-lg);
+}
+
+.video-modal .caption {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-sm);
+}
+
+.video-modal .message {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+/* ==========================================
+   Game Modal
+   ========================================== */
+.game-container {
+    text-align: center;
+}
+
+.game-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+    background: var(--gradient-dreamy);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.game-board {
+    display: grid;
+    gap: 4px;
+    background: var(--color-peach);
+    padding: var(--spacing-md);
+    border-radius: 16px;
+    margin: 0 auto var(--spacing-lg);
+    max-width: 600px;
+    box-shadow: var(--shadow-soft);
+}
+
+.game-square {
+    aspect-ratio: 1;
+    background: var(--color-white);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    position: relative;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.game-square:hover {
+    background: var(--color-accent-light);
+    transform: scale(1.05);
+}
+
+.game-square.has-moment {
+    background: linear-gradient(135deg, #fff5f0 0%, #ffe8f0 100%);
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.game-square.ladder {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+}
+
+.game-square.snake {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+}
+
+.game-square.final {
+    background: var(--gradient-dreamy);
+    color: var(--color-white);
+    font-weight: 700;
+}
+
+.player-token {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: bounce 0.5s ease;
+    z-index: 10;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.game-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.dice-display {
+    font-size: 3rem;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.game-button {
+    padding: var(--spacing-sm) var(--spacing-xl);
+    background: var(--gradient-dreamy);
+    color: var(--color-white);
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+    box-shadow: var(--shadow-soft);
+}
+
+.game-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.game-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.game-status {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    min-height: 1.5rem;
+}
+
+.moment-card {
+    background: var(--gradient-dreamy);
+    padding: var(--spacing-lg);
+    border-radius: 16px;
+    margin-top: var(--spacing-md);
+    color: var(--color-white);
+    animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.moment-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.moment-card .moment-date {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: var(--spacing-sm);
+}
+
+.moment-card .moment-description {
+    line-height: 1.6;
+}
+
+.apology-message {
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--spacing-sm);
+    border-radius: 8px;
+    margin-top: var(--spacing-sm);
+    font-style: italic;
+}
+
+/* ==========================================
+   Calendar Modal
+   ========================================== */
+.calendar-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.calendar-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    background: var(--gradient-dreamy);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.calendar-filters {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.filter-button {
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: var(--color-white);
+    border: 2px solid var(--color-accent-light);
+    color: var(--color-text);
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.filter-button:hover,
+.filter-button.active {
+    background: var(--gradient-dreamy);
+    color: var(--color-white);
+    border-color: transparent;
+}
+
+.timeline {
+    position: relative;
+    padding-left: var(--spacing-lg);
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gradient-dreamy);
+}
+
+.timeline-item {
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.timeline-item:nth-child(n) {
+    animation-delay: calc(var(--item-index) * 0.1s);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--spacing-lg) - 6px);
+    top: 8px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--color-white);
+    border: 3px solid var(--color-accent);
+}
+
+.timeline-item.high::before {
+    border-color: #66bb6a;
+}
+
+.timeline-item.low::before {
+    border-color: #ffa726;
+}
+
+.timeline-content {
+    background: var(--color-white);
+    padding: var(--spacing-md);
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.timeline-content:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.timeline-date {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+.timeline-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+}
+
+.timeline-description {
+    color: var(--color-text-light);
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.timeline-apology {
+    background: linear-gradient(135deg, #ffe5d9 0%, #ffc4d6 100%);
+    padding: var(--spacing-sm);
+    border-radius: 8px;
+    margin-top: var(--spacing-sm);
+    font-style: italic;
+    color: var(--color-text);
+    font-size: 0.9rem;
+}
+
+.story-mode-button {
+    display: block;
+    margin: var(--spacing-lg) auto 0;
+    padding: var(--spacing-sm) var(--spacing-xl);
+    background: var(--gradient-dreamy);
+    color: var(--color-white);
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+    box-shadow: var(--shadow-soft);
+}
+
+.story-mode-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* ==========================================
+   Particles (Pop Effect)
+   ========================================== */
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particleFloat 1s ease-out forwards;
+}
+
+@keyframes particleFloat {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(0);
+    }
+}
+
+/* ==========================================
+   Responsive Design
+   ========================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: var(--spacing-md);
+    }
+    
+    .header {
+        padding: var(--spacing-lg) 0 var(--spacing-md);
+    }
+    
+    .balloon {
+        width: 60px;
+        height: 80px;
+    }
+    
+    .reset-button {
+        bottom: var(--spacing-md);
+        right: var(--spacing-md);
+        padding: var(--spacing-sm) var(--spacing-sm);
+        font-size: 0;
+    }
+    
+    .reset-button svg {
+        margin: 0;
+    }
+    
+    .modal-body {
+        padding: var(--spacing-lg);
+    }
+    
+    .game-board {
+        padding: var(--spacing-sm);
+        gap: 2px;
+    }
+    
+    .game-square {
+        font-size: 0.65rem;
+    }
+    
+    .player-token {
+        font-size: 1.2rem;
+    }
+    
+    .timeline {
+        padding-left: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-overlay {
+        padding: var(--spacing-sm);
+    }
+    
+    .modal-close {
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+        width: 36px;
+        height: 36px;
+    }
+    
+    .game-title,
+    .calendar-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* ==========================================
+   Loading State
+   ========================================== */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s ease-in-out infinite;
+    border-radius: 8px;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
