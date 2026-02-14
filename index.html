@@ -4,62 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Our journey together - A Valentine's Day celebration">
-    <title>Full Circle ❤️</title>
-    
-    <!-- Preconnect to fonts -->
+    <title>Full Circle</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="./css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Main Container -->
-    <main class="container">
-        <!-- Header -->
-        <header class="header">
-            <h1 class="site-title" id="siteTitle">Full Circle</h1>
-            <p class="site-subtitle" id="siteSubtitle">Our journey, one balloon at a time</p>
-            <p class="hint-text">Pop a balloon ✨</p>
-        </header>
-
-        <!-- Balloons Container -->
-        <div class="balloons-container" id="balloonsContainer" role="region" aria-label="Interactive balloons">
-            <!-- Balloons will be dynamically inserted here -->
-        </div>
-
-        <!-- Reset Button -->
-        <button class="reset-button" id="resetButton" aria-label="Reset all balloons">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
-            </svg>
-            Reset Balloons
-        </button>
-    </main>
-
-    <!-- Modal Container -->
-    <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="modal-content" id="modalContent">
-            <button class="modal-close" id="modalClose" aria-label="Close modal">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-            <div class="modal-body" id="modalBody">
-                <!-- Content will be dynamically inserted -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Particle Container for Pop Effects -->
-    <div class="particles-container" id="particlesContainer" aria-hidden="true"></div>
-
-    <!-- Scripts -->
-    <script src="./js/modal.js"></script>
-    <script src="./js/balloons.js"></script>
-    <script src="./js/game.js"></script>
-    <script src="./js/calendar.js"></script>
-    <script src="./js/app.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

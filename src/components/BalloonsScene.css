@@ -1,0 +1,15 @@
+.balloons-scene {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  min-height: 70vh;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+}
+
+@media (max-width: 768px) {
+  .balloons-scene {
+    min-height: 60vh;
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+}
