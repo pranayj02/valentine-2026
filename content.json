@@ -1,0 +1,237 @@
+{
+  "siteTitle": "Full Circle",
+  "siteSubtitle": "Our journey, one balloon at a time",
+  "balloons": [
+    {
+      "id": "balloon1",
+      "type": "photo",
+      "asset": "./assets/photos/balloon1.webp",
+      "caption": "You make every moment feel like magic ✨"
+    },
+    {
+      "id": "balloon2",
+      "type": "photo",
+      "asset": "./assets/photos/balloon2.webp",
+      "caption": "Dancing through life with you by my side 💃"
+    },
+    {
+      "id": "balloon3",
+      "type": "photo",
+      "asset": "./assets/photos/balloon3.webp",
+      "caption": "Every adventure is better with you 🌟"
+    },
+    {
+      "id": "balloon4",
+      "type": "photo",
+      "asset": "./assets/photos/balloon4.webp",
+      "caption": "Your smile lights up my world 🌸"
+    },
+    {
+      "id": "balloon5",
+      "type": "photo",
+      "asset": "./assets/photos/balloon5.webp",
+      "caption": "My zoomball."
+    },
+    {
+      "id": "balloon6",
+      "type": "photo",
+      "asset": "./assets/photos/balloon6.webp",
+      "caption": "You're my favorite person in every universe 🌙"
+    },
+    {
+      "id": "balloon7",
+      "type": "video",
+      "asset": "./assets/videos/video1.mp4",
+      "caption": "You that make my heart full 💖"
+    },
+    {
+      "id": "balloon8",
+      "type": "video",
+      "asset": "./assets/videos/video2.mp4",
+      "caption": "Every second with you is a treasure 🎬"
+    },
+    {
+      "id": "balloon9",
+      "type": "game",
+      "caption": "Play through our journey together 🎲"
+    },
+    {
+      "id": "balloon10",
+      "type": "calendar",
+      "caption": "Explore every milestone we've shared 📅"
+    }
+  ],
+  "moments": [
+    {
+      "id": "first-date",
+      "date": "2025-01-11",
+      "title": "Best Ever First Date",
+      "description": "The beginning of something beautiful. From the moment we met, I knew you were special.",
+      "mood": "high",
+      "media": "./assets/photos/moment-firstdate.webp"
+    },
+    {
+      "id": "valentine",
+      "date": "2025-02-14",
+      "title": "Flawless Valentine's Day",
+      "description": "Our first Valentine's together was absolutely perfect. Every detail, every moment.",
+      "mood": "high",
+      "media": "./assets/photos/moment-valentine.webp"
+    },
+    {
+      "id": "lolla1",
+      "date": "2025-03-09",
+      "title": "First Concert Together (Lollapalooza)",
+      "description": "Dancing together, singing along, creating memories in the crowd. Pure magic.",
+      "mood": "high",
+      "media": "./assets/photos/moment-lolla1.webp"
+    },
+    {
+      "id": "ibis",
+      "date": "2025-03-15",
+      "title": "First Hotel Stay @ Ibis",
+      "description": "Our first overnight together. Breakfast in bed and endless conversations.",
+      "mood": "high",
+      "media": "./assets/photos/moment-ibis.webp"
+    },
+    {
+      "id": "her-bday",
+      "date": "2025-04-26",
+      "title": "Best Birthday Ever for Her",
+      "description": "Making your special day unforgettable. Seeing your smile made it all worth it.",
+      "mood": "high",
+      "media": "./assets/photos/moment-herbday.webp"
+    },
+    {
+      "id": "ben-bohmer",
+      "date": "2025-05-09",
+      "title": "Ben Böhmer @ Dome",
+      "description": "An incredible show, but tensions rose afterward. Not our finest moment.",
+      "mood": "low",
+      "apology": "I know the night ended badly.  I'm sorry for ruining what should've been a beautiful memory. I love you. 💕"
+    },
+    {
+      "id": "us-distance",
+      "date": "2025-06-15",
+      "title": "US Trip - Long Distance for a Month",
+      "description": "A whole month apart. The distance was harder than we expected.",
+      "mood": "low",
+      "apology": "Being apart was tough, and I love how you handled it. Thank you 💕"
+    },
+    {
+      "id": "pub-crawl",
+      "date": "2025-07-05",
+      "title": "Pub Crawl - Biggest Fight",
+      "description": "Things got heated. Words were said that shouldn't have been. My lowest point.",
+      "mood": "low",
+      "apology": "This was on me. I let my temper take over and hurt you when you were already upset. There's no excuse for how I acted. I'm truly sorry, and I promise to do better. You mean everything to me. 💕"
+    },
+    {
+      "id": "novotel",
+      "date": "2025-07-12",
+      "title": "Hotel Stay + Novotel Breakfast",
+      "description": "We bounced back. A beautiful stay, amazing breakfast.",
+      "mood": "high",
+      "media": "./assets/photos/moment-novotel.webp"
+    },
+    {
+      "id": "bandra-born",
+      "date": "2025-08-23",
+      "title": "Bandra Born Dinner Highlight",
+      "description": "An unforgettable dinner. Great food, better company, best conversations.",
+      "mood": "high",
+      "media": "./assets/photos/moment-bandraborn.webp"
+    },
+    {
+      "id": "my-bday",
+      "date": "2025-09-06",
+      "title": "Best Birthday Ever for Me @ Aamby",
+      "description": "You made my birthday absolutely incredible. I couldn't have asked for more.",
+      "mood": "high",
+      "media": "./assets/photos/moment-mybday.webp"
+    },
+    {
+      "id": "goa",
+      "date": "2025-10-30",
+      "title": "Goa - Best Trip Highlight",
+      "description": "Sun, sea, and the best company. Goa with you was paradise.",
+      "mood": "high",
+      "media": "./assets/photos/moment-goa.webp"
+    },
+    {
+      "id": "worst-night",
+      "date": "2025-10-31",
+      "title": "Worst Night Ever",
+      "description": "That night in Goa.",
+      "mood": "low",
+      "apology": "I messed up badly. I hurt you deeply, and I'm so sorry. I will never make you feel that way again. "
+    },
+    {
+      "id": "breakup",
+      "date": "2025-11-10",
+      "title": "Breakup for a Month",
+      "description": "We needed space. A month apart to think, reflect, and grow.",
+      "mood": "low",
+      "apology": "Being apart from you was the hardest thing. I realized how much I need you, and how much I took for granted. I'm sorry for everything that led to this. I'm committed to being better. 💕"
+    },
+    {
+      "id": "bounce-back",
+      "date": "2025-12-21",
+      "title": "Bounce Back Again",
+      "description": "We found our way back. Stronger, wiser, more committed than ever.",
+      "mood": "high",
+      "media": "./assets/photos/moment-bounceback.webp"
+    },
+    {
+      "id": "one-year",
+      "date": "2026-01-11",
+      "title": "Best One Year @ Marriott Turbhe",
+      "description": "One full year together. Celebrated at Marriott with love and gratitude.",
+      "mood": "high",
+      "media": "./assets/photos/moment-oneyear.webp"
+    },
+    {
+      "id": "lolla-afters",
+      "date": "2026-01-26",
+      "title": "Lolla Afters!!",
+      "description": "Back to Lollapalooza, but this time for the after-party. Full circle moment.",
+      "mood": "high",
+      "media": "./assets/photos/moment-lollaafters.webp"
+    }
+  ],
+  "gameConfig": {
+    "boardSize": 49,
+    "finalSquare": 49,
+    "finishingText": "Full Circle! We've been through it all together. Here's to forever. ❤️",
+    "squareMoments": [
+      { "square": 3, "momentId": "first-date" },
+      { "square": 7, "momentId": "valentine" },
+      { "square": 12, "momentId": "lolla1" },
+      { "square": 15, "momentId": "ibis" },
+      { "square": 19, "momentId": "her-bday" },
+      { "square": 22, "momentId": "ben-bohmer" },
+      { "square": 26, "momentId": "us-distance" },
+      { "square": 31, "momentId": "pub-crawl" },
+      { "square": 34, "momentId": "novotel" },
+      { "square": 37, "momentId": "bandra-born" },
+      { "square": 40, "momentId": "my-bday" },
+      { "square": 43, "momentId": "goa" },
+      { "square": 44, "momentId": "worst-night" },
+      { "square": 46, "momentId": "bounce-back" },
+      { "square": 48, "momentId": "one-year" }
+    ],
+    "ladders": [
+      { "from": 7, "to": 14, "momentId": "valentine" },
+      { "from": 19, "to": 25, "momentId": "her-bday" },
+      { "from": 34, "to": 41, "momentId": "novotel" },
+      { "from": 40, "to": 45, "momentId": "my-bday" },
+      { "from": 46, "to": 48, "momentId": "bounce-back" }
+    ],
+    "snakes": [
+      { "from": 22, "to": 16, "momentId": "ben-bohmer" },
+      { "from": 26, "to": 20, "momentId": "us-distance" },
+      { "from": 31, "to": 9, "momentId": "pub-crawl" },
+      { "from": 44, "to": 35, "momentId": "worst-night" }
+    ]
+  }
+}
