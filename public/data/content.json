@@ -5,49 +5,49 @@
     {
       "id": "balloon1",
       "type": "photo",
-      "asset": "./assets/photos/balloon1.webp",
+      "asset": "/assets/photos/balloon1.webp",
       "caption": "You make every moment feel like magic ✨"
     },
     {
       "id": "balloon2",
       "type": "photo",
-      "asset": "./assets/photos/balloon2.webp",
+      "asset": "/assets/photos/balloon2.webp",
       "caption": "Dancing through life with you by my side 💃"
     },
     {
       "id": "balloon3",
       "type": "photo",
-      "asset": "./assets/photos/balloon3.webp",
+      "asset": "/assets/photos/balloon3.webp",
       "caption": "Every adventure is better with you 🌟"
     },
     {
       "id": "balloon4",
       "type": "photo",
-      "asset": "./assets/photos/balloon4.webp",
+      "asset": "/assets/photos/balloon4.webp",
       "caption": "Your smile lights up my world 🌸"
     },
     {
       "id": "balloon5",
       "type": "photo",
-      "asset": "./assets/photos/balloon5.webp",
+      "asset": "/assets/photos/balloon5.webp",
       "caption": "My zoomball."
     },
     {
       "id": "balloon6",
       "type": "photo",
-      "asset": "./assets/photos/balloon6.webp",
+      "asset": "/assets/photos/balloon6.webp",
       "caption": "You're my favorite person in every universe 🌙"
     },
     {
       "id": "balloon7",
       "type": "video",
-      "asset": "./assets/videos/video1.mp4",
+      "asset": "/assets/videos/video1.mp4",
       "caption": "You that make my heart full 💖"
     },
     {
       "id": "balloon8",
       "type": "video",
-      "asset": "./assets/videos/video2.mp4",
+      "asset": "/assets/videos/video2.mp4",
       "caption": "Every second with you is a treasure 🎬"
     },
     {
@@ -68,7 +68,7 @@
       "title": "Best Ever First Date",
       "description": "The beginning of something beautiful. From the moment we met, I knew you were special.",
       "mood": "high",
-      "media": "./assets/photos/moment-firstdate.webp"
+      "media": "/assets/photos/moment-firstdate.webp"
     },
     {
       "id": "valentine",
@@ -76,7 +76,7 @@
       "title": "Flawless Valentine's Day",
       "description": "Our first Valentine's together was absolutely perfect. Every detail, every moment.",
       "mood": "high",
-      "media": "./assets/photos/moment-valentine.webp"
+      "media": "/assets/photos/moment-valentine.webp"
     },
     {
       "id": "lolla1",
@@ -84,7 +84,7 @@
       "title": "First Concert Together (Lollapalooza)",
       "description": "Dancing together, singing along, creating memories in the crowd. Pure magic.",
       "mood": "high",
-      "media": "./assets/photos/moment-lolla1.webp"
+      "media": "/assets/photos/moment-lolla1.webp"
     },
     {
       "id": "ibis",
@@ -92,7 +92,7 @@
       "title": "First Hotel Stay @ Ibis",
       "description": "Our first overnight together. Breakfast in bed and endless conversations.",
       "mood": "high",
-      "media": "./assets/photos/moment-ibis.webp"
+      "media": "/assets/photos/moment-ibis.webp"
     },
     {
       "id": "her-bday",
@@ -100,7 +100,7 @@
       "title": "Best Birthday Ever for Her",
       "description": "Making your special day unforgettable. Seeing your smile made it all worth it.",
       "mood": "high",
-      "media": "./assets/photos/moment-herbday.webp"
+      "media": "/assets/photos/moment-herbday.webp"
     },
     {
       "id": "ben-bohmer",
@@ -132,7 +132,7 @@
       "title": "Hotel Stay + Novotel Breakfast",
       "description": "We bounced back. A beautiful stay, amazing breakfast.",
       "mood": "high",
-      "media": "./assets/photos/moment-novotel.webp"
+      "media": "/assets/photos/moment-novotel.webp"
     },
     {
       "id": "bandra-born",
@@ -140,7 +140,7 @@
       "title": "Bandra Born Dinner Highlight",
       "description": "An unforgettable dinner. Great food, better company, best conversations.",
       "mood": "high",
-      "media": "./assets/photos/moment-bandraborn.webp"
+      "media": "/assets/photos/moment-bandraborn.webp"
     },
     {
       "id": "my-bday",
@@ -148,7 +148,7 @@
       "title": "Best Birthday Ever for Me @ Aamby",
       "description": "You made my birthday absolutely incredible. I couldn't have asked for more.",
       "mood": "high",
-      "media": "./assets/photos/moment-mybday.webp"
+      "media": "/assets/photos/moment-mybday.webp"
     },
     {
       "id": "goa",
@@ -156,7 +156,7 @@
       "title": "Goa - Best Trip Highlight",
       "description": "Sun, sea, and the best company. Goa with you was paradise.",
       "mood": "high",
-      "media": "./assets/photos/moment-goa.webp"
+      "media": "/assets/photos/moment-goa.webp"
     },
     {
       "id": "worst-night",
@@ -180,7 +180,7 @@
       "title": "Bounce Back Again",
       "description": "We found our way back. Stronger, wiser, more committed than ever.",
       "mood": "high",
-      "media": "./assets/photos/moment-bounceback.webp"
+      "media": "/assets/photos/moment-bounceback.webp"
     },
     {
       "id": "one-year",
@@ -188,7 +188,7 @@
       "title": "Best One Year @ Marriott Turbhe",
       "description": "One full year together. Celebrated at Marriott with love and gratitude.",
       "mood": "high",
-      "media": "./assets/photos/moment-oneyear.webp"
+      "media": "/assets/photos/moment-oneyear.webp"
     },
     {
       "id": "lolla-afters",
@@ -196,7 +196,7 @@
       "title": "Lolla Afters!!",
       "description": "Back to Lollapalooza, but this time for the after-party. Full circle moment.",
       "mood": "high",
-      "media": "./assets/photos/moment-lollaafters.webp"
+      "media": "/assets/photos/moment-lollaafters.webp"
     }
   ],
   "gameConfig": {

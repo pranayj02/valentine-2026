@@ -13,9 +13,20 @@ function Balloon({ balloon, position, gradient, isPopped, onClick, delay }) {
   const controls = useAnimation()
 
   useEffect(() => {
-    const float = async () => {
+    if (isPopped) return
+    // First animate balloon into view (opacity/scale), then start floating
+    const run = async () => {
+      await controls.start({
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        rotate: 0,
+        transition: { duration: 0.5, delay }
+      })
       while (!isPopped) {
         await controls.start({
+          opacity: 1,
+          scale: 1,
           y: [0, -15, 0],
           rotate: [0, 3, -3, 0],
           transition: {
@@ -26,8 +37,8 @@ function Balloon({ balloon, position, gradient, isPopped, onClick, delay }) {
         })
       }
     }
-    float()
-  }, [controls, isPopped])
+    run()
+  }, [controls, isPopped, delay])
 
   const handleClick = () => {
     if (!isPopped) {

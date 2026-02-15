@@ -16,8 +16,12 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
-    fetch('/data/content.json')
-      .then(res => res.json())
+    const base = (import.meta.env.BASE_URL || '').replace(/\/$/, '')
+    fetch(`${base}/data/content.json`)
+      .then(res => {
+        if (!res.ok) throw new Error(`Failed to load content: ${res.status}`)
+        return res.json()
+      })
       .then(data => setContent(data))
       .catch(err => console.error('Failed to load content:', err))
   }, [])
