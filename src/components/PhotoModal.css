@@ -20,6 +20,35 @@
   display: block;
 }
 
+.photo-placeholder {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  background: var(--color-surface-elevated);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.photo-placeholder-icon {
+  font-size: 3rem;
+  opacity: 0.6;
+}
+
+.photo-placeholder-text {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.photo-placeholder-path {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  word-break: break-all;
+}
+
 .photo-content {
   text-align: center;
 }
