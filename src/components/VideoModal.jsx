@@ -1,26 +1,16 @@
-import { motion } from 'framer-motion'
 import './VideoModal.css'
 
-function VideoModal({ balloon }) {
+export default function VideoModal({ balloon }) {
+  const src = balloon?.asset ?? ''
+
   return (
-    <motion.div
-      className="video-modal"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="video-container">
-        <video controls preload="metadata">
-          <source src={balloon.asset} type="video/mp4" />
-          Your browser does not support the video tag.
+    <div className="video-modal">
+      <div className="video-modal__media">
+        <video controls preload="metadata" src={src}>
+          Your browser does not support video.
         </video>
       </div>
-
-      <div className="video-content">
-        <h2 className="video-caption">{balloon.caption}</h2>
-      </div>
-    </motion.div>
+      <p className="video-modal__caption">{balloon?.caption ?? ''}</p>
+    </div>
   )
 }
-
-export default VideoModal

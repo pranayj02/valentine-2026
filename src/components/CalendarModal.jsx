@@ -86,7 +86,7 @@ function CalendarModal({ moments }) {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="calendar-title">Our Journey</h2>
+      <h2 className="calendar-modal__title">Our Journey</h2>
 
       <div className="calendar-filters">
         {FILTERS.map(({ id, label }) => (

@@ -1,23 +1,25 @@
-import { motion } from 'framer-motion'
+import { useState } from 'react'
 import './PhotoModal.css'
 
-function PhotoModal({ balloon }) {
-  return (
-    <motion.div
-      className="photo-modal"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="photo-container">
-        <img src={balloon.asset} alt={balloon.caption} loading="lazy" />
-      </div>
+export default function PhotoModal({ balloon }) {
+  const [imgError, setImgError] = useState(false)
+  const src = balloon?.asset ?? ''
 
-      <div className="photo-content">
-        <h2 className="photo-caption">{balloon.caption}</h2>
+  return (
+    <div className="photo-modal">
+      <div className="photo-modal__media">
+        {src && !imgError ? (
+          <img
+            src={src}
+            alt={balloon?.caption ?? 'Photo'}
+            loading="lazy"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="photo-modal__placeholder">No image</div>
+        )}
       </div>
-    </motion.div>
+      <p className="photo-modal__caption">{balloon?.caption ?? ''}</p>
+    </div>
   )
 }
-
-export default PhotoModal

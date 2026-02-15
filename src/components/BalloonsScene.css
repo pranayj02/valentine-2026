@@ -1,15 +1,23 @@
+/* Grid: all 10 balloons always visible, no overlap */
 .balloons-scene {
-  position: relative;
   width: 100%;
-  max-width: 1600px;
+  max-width: 900px;
   margin: 0 auto;
-  min-height: 70vh;
-  padding: var(--spacing-2xl) var(--spacing-lg);
+  padding: var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto auto;
+  gap: var(--space-6);
+  justify-items: center;
+  align-items: center;
+  min-height: 320px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .balloons-scene {
-    min-height: 60vh;
-    padding: var(--spacing-lg) var(--spacing-md);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, auto);
+    gap: var(--space-4);
+    min-height: 520px;
   }
 }
