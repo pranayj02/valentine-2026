@@ -2,24 +2,29 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import './GameModal.css'
 
-// Board: 7×7, 1 at bottom-left, 49 at top-left. Row 0 = 1–7, row 1 = 8–14 (reversed), etc.
-const ROWS = 7
-const COLS = 7
+// Board: 6×5 = 30 squares. 1 at bottom-left, 30 at top-left. Row 0 = 1–5, row 1 = 6–10 (reversed), etc.
+const ROWS = 6
+const COLS = 5
 
 function getSquareNumber(row, col) {
   if (row % 2 === 0) return row * COLS + 1 + col
   return (row + 1) * COLS - col
 }
 
+// 4-sided dice: values 1–4, shown as pips (1 = center, 2 = diagonal, 3 = triangle, 4 = corners)
 function DicePips({ value }) {
-  const v = Math.max(1, Math.min(6, Math.round(value)))
-  const show = { tl: v >= 2, tr: v >= 2, ml: v >= 6, mr: v >= 6, bl: v >= 4, br: v >= 4, c: v === 1 || v === 3 || v === 5 }
+  const v = Math.max(1, Math.min(4, Math.round(value)))
+  const show = {
+    c: v === 1 || v === 3,
+    tl: v >= 2,
+    br: v >= 2,
+    tr: v >= 3,
+    bl: v >= 4,
+  }
   return (
-    <div className="dice-pips" aria-label={`Dice: ${v}`}>
+    <div className="dice-pips dice-4" aria-label={`Dice: ${v}`}>
       {show.tl && <span className="pip tl" />}
       {show.tr && <span className="pip tr" />}
-      {show.ml && <span className="pip ml" />}
-      {show.mr && <span className="pip mr" />}
       {show.bl && <span className="pip bl" />}
       {show.br && <span className="pip br" />}
       {show.c && <span className="pip c" />}
@@ -36,9 +41,9 @@ export default function GameModal({ config }) {
   const [message, setMessage] = useState("Player 1's turn — roll the dice!")
   const [winner, setWinner] = useState(null)
 
-  const finalSquare = config.finalSquare || 49
-  const snakes = config.snakes || []
-  const ladders = config.ladders || []
+  const finalSquare = config?.finalSquare ?? 30
+  const snakes = config?.snakes ?? []
+  const ladders = config?.ladders ?? []
 
   function applySnakeOrLadder(square) {
     const snake = snakes.find(s => s.from === square)
@@ -55,11 +60,11 @@ export default function GameModal({ config }) {
 
     let count = 0
     const id = setInterval(() => {
-      setDice(Math.floor(Math.random() * 6) + 1)
+      setDice(Math.floor(Math.random() * 4) + 1)
       count++
-      if (count > 12) {
+      if (count > 10) {
         clearInterval(id)
-        const roll = Math.floor(Math.random() * 6) + 1
+        const roll = Math.floor(Math.random() * 4) + 1
         setDice(roll)
         move(roll)
       }
@@ -130,6 +135,11 @@ export default function GameModal({ config }) {
   return (
     <motion.div className="game-modal simple" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <h2 className="game-title">Snakes &amp; Ladders</h2>
+
+      <div className="game-legend">
+        <span className="legend-item ladder-legend">Green = Ladder (climb up)</span>
+        <span className="legend-item snake-legend">Red = Snake (slide down)</span>
+      </div>
 
       <div className="game-status">
         <p className="game-message">{message}</p>

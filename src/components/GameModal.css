@@ -6,8 +6,35 @@
 
 .game-modal .game-title {
   font-size: 1.75rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   text-align: center;
+}
+
+.game-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+}
+
+.ladder-legend {
+  background: rgba(67, 233, 123, 0.25);
+  color: #43e97b;
+  border: 1px solid rgba(67, 233, 123, 0.5);
+}
+
+.snake-legend {
+  background: rgba(255, 107, 157, 0.25);
+  color: #ff6b9d;
+  border: 1px solid rgba(255, 107, 157, 0.5);
 }
 
 .game-status {
