@@ -18,6 +18,14 @@
   margin-bottom: var(--spacing-lg);
 }
 
+.game-turn-label {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 600;
+}
+
 .player-info {
   display: flex;
   gap: var(--spacing-md);
@@ -25,21 +33,56 @@
   flex-wrap: wrap;
 }
 
-.player-badge {
+.player-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
   background: var(--color-surface);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius-full);
-  font-weight: 600;
+  border-radius: var(--radius-lg);
+  min-width: 140px;
   transition: all var(--transition-fast);
   color: var(--color-text-secondary);
+  position: relative;
 }
 
-.player-badge.active {
-  background: linear-gradient(135deg, rgba(255, 107, 157, 0.2) 0%, rgba(199, 125, 255, 0.2) 100%);
+.player-card.active {
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.25) 0%, rgba(199, 125, 255, 0.25) 100%);
   border-color: var(--color-accent-1);
   color: var(--color-text);
-  box-shadow: var(--glow-sm) rgba(255, 107, 157, 0.3);
+  box-shadow: var(--glow-sm) rgba(255, 107, 157, 0.4);
+}
+
+.player-emoji {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.player-card strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.player-square {
+  display: block;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.your-turn-badge {
+  position: absolute;
+  top: -8px;
+  right: -4px;
+  background: linear-gradient(135deg, #ff6b9d 0%, #c77dff 100%);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  box-shadow: var(--shadow-md);
 }
 
 .game-board-container {
@@ -102,14 +145,25 @@
 }
 
 .player-token {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   position: absolute;
   z-index: 10;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-token.p1 {
+  bottom: 6px;
+  left: 6px;
 }
 
 .player-token.p2 {
-  transform: translateX(8px);
+  top: 6px;
+  right: 6px;
 }
 
 .ladder-line,
@@ -142,17 +196,37 @@
 .dice {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, var(--color-surface-elevated) 0%, var(--color-surface) 100%);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, #f0f0f0 0%, #cacaca 100%);
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--color-text);
-  box-shadow: var(--shadow-lg);
+  box-shadow: inset 0 2px 4px rgba(255,255,255,0.8), 2px 4px 8px rgba(0,0,0,0.2);
 }
+
+.dice-pips {
+  width: 56px;
+  height: 56px;
+  position: relative;
+}
+
+.dice-pips .pip {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.2);
+}
+
+.dice-pips .pip.tl { top: 0; left: 0; }
+.dice-pips .pip.tr { top: 0; right: 0; }
+.dice-pips .pip.ml { top: 50%; left: 0; transform: translateY(-50%); }
+.dice-pips .pip.mr { top: 50%; right: 0; transform: translateY(-50%); }
+.dice-pips .pip.bl { bottom: 0; left: 0; }
+.dice-pips .pip.br { bottom: 0; right: 0; }
+.dice-pips .pip.c { top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
 .game-button {
   background: linear-gradient(135deg, #ff6b9d 0%, #c77dff 100%);

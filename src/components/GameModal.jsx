@@ -1,17 +1,42 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './GameModal.css'
 
+// Real dice faces: pips in standard positions (tl, tr, ml, mr, bl, br, c = center)
+function DicePips({ value }) {
+  const v = Math.max(1, Math.min(6, Math.round(value)))
+  const show = {
+    tl: v >= 2,
+    tr: v >= 2,
+    ml: v >= 6,
+    mr: v >= 6,
+    bl: v >= 4,
+    br: v >= 4,
+    c: v === 1 || v === 3 || v === 5,
+  }
+  return (
+    <div className="dice-pips" aria-label={`Dice showing ${v}`}>
+      {show.tl && <span className="pip tl" />}
+      {show.tr && <span className="pip tr" />}
+      {show.ml && <span className="pip ml" />}
+      {show.mr && <span className="pip mr" />}
+      {show.bl && <span className="pip bl" />}
+      {show.br && <span className="pip br" />}
+      {show.c && <span className="pip c" />}
+    </div>
+  )
+}
+
 function GameModal({ config, moments }) {
   const [gameState, setGameState] = useState({
-    player1Position: 0,
-    player2Position: 0,
+    player1Position: 1,
+    player2Position: 1,
     currentPlayer: 1,
-    diceValue: 6,
+    diceValue: 1,
     isRolling: false,
     gameFinished: false,
     winner: null,
-    message: 'Player 1: Roll the dice to start!',
+    message: "Player 1's turn — roll the dice!",
     showMoment: null,
   })
 
@@ -54,7 +79,8 @@ function GameModal({ config, moments }) {
 
   const movePlayer = (steps) => {
     const currentPlayerKey = `player${gameState.currentPlayer}Position`
-    const newPosition = Math.min(gameState[currentPlayerKey] + steps, config.boardSize)
+    const currentPos = gameState[currentPlayerKey]
+    const newPosition = Math.min(Math.max(1, currentPos + steps), config.finalSquare)
 
     setGameState(prev => ({
       ...prev,
@@ -117,25 +143,28 @@ function GameModal({ config, moments }) {
   }
 
   const switchPlayer = () => {
-    setGameState(prev => ({
-      ...prev,
-      currentPlayer: prev.currentPlayer === 1 ? 2 : 1,
-      isRolling: false,
-      showMoment: null,
-      message: prev.gameFinished ? prev.message : `Player ${prev.currentPlayer === 1 ? 2 : 1}: Your turn!`,
-    }))
+    setGameState(prev => {
+      const next = prev.currentPlayer === 1 ? 2 : 1
+      return {
+        ...prev,
+        currentPlayer: next,
+        isRolling: false,
+        showMoment: null,
+        message: prev.gameFinished ? prev.message : `Player ${next}'s turn — roll the dice!`,
+      }
+    })
   }
 
   const resetGame = () => {
     setGameState({
-      player1Position: 0,
-      player2Position: 0,
+      player1Position: 1,
+      player2Position: 1,
       currentPlayer: 1,
-      diceValue: 6,
+      diceValue: 1,
       isRolling: false,
       gameFinished: false,
       winner: null,
-      message: 'Player 1: Roll the dice to start!',
+      message: "Player 1's turn — roll the dice!",
       showMoment: null,
     })
   }
@@ -231,15 +260,36 @@ function GameModal({ config, moments }) {
             gridColumn: fromPos.col + 1,
           }}
         >
-          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" className="snake-svg">
+            {/* Wavy snake body: head at top (from), tail at bottom (to) */}
             <path
-              d="M 50 0 Q 80 25 50 50 Q 20 75 50 100"
-              stroke="#ff6b9d"
-              strokeWidth="6"
+              className="snake-body"
+              d="M 50 2 Q 85 18 50 35 Q 15 52 50 68 Q 85 82 50 98"
               fill="none"
+              stroke="#c41e3a"
+              strokeWidth="10"
               strokeLinecap="round"
+              strokeLinejoin="round"
             />
-            <circle cx="50" cy="100" r="8" fill="#ff6b9d" />
+            <path
+              className="snake-belly"
+              d="M 50 2 Q 85 18 50 35 Q 15 52 50 68 Q 85 82 50 98"
+              fill="none"
+              stroke="#e85d6a"
+              strokeWidth="5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Snake head */}
+            <ellipse cx="50" cy="8" rx="14" ry="10" fill="#c41e3a" />
+            <ellipse cx="50" cy="8" rx="10" ry="7" fill="#2d0a0a" />
+            {/* Eyes */}
+            <circle cx="45" cy="5" r="3" fill="#fff" />
+            <circle cx="55" cy="5" r="3" fill="#fff" />
+            <circle cx="45" cy="5" r="1.5" fill="#000" />
+            <circle cx="55" cy="5" r="1.5" fill="#000" />
+            {/* Tongue */}
+            <path d="M 50 14 L 48 20 M 50 14 L 52 20" stroke="#c41e3a" strokeWidth="1.5" fill="none" strokeLinecap="round" />
           </svg>
         </div>
       )
@@ -257,13 +307,32 @@ function GameModal({ config, moments }) {
       <h2 className="game-title">Our Journey: The Game</h2>
 
       <div className="game-info">
+        <h3 className="game-turn-label">
+          {!gameState.gameFinished
+            ? `Current turn: Player ${gameState.currentPlayer} ${gameState.currentPlayer === 1 ? '💕' : '💖'}`
+            : `Winner: Player ${gameState.winner} ${gameState.winner === 1 ? '💕' : '💖'}`}
+        </h3>
         <div className="player-info">
-          <span className={`player-badge ${gameState.currentPlayer === 1 ? 'active' : ''}`}>
-            💕 Player 1: Square {gameState.player1Position}
-          </span>
-          <span className={`player-badge ${gameState.currentPlayer === 2 ? 'active' : ''}`}>
-            💖 Player 2: Square {gameState.player2Position}
-          </span>
+          <div className={`player-card ${gameState.currentPlayer === 1 ? 'active' : ''}`}>
+            <span className="player-emoji">💕</span>
+            <div>
+              <strong>Player 1</strong>
+              <span className="player-square">Square {gameState.player1Position}</span>
+            </div>
+            {gameState.currentPlayer === 1 && !gameState.gameFinished && (
+              <span className="your-turn-badge">Your turn — roll!</span>
+            )}
+          </div>
+          <div className={`player-card ${gameState.currentPlayer === 2 ? 'active' : ''}`}>
+            <span className="player-emoji">💖</span>
+            <div>
+              <strong>Player 2</strong>
+              <span className="player-square">Square {gameState.player2Position}</span>
+            </div>
+            {gameState.currentPlayer === 2 && !gameState.gameFinished && (
+              <span className="your-turn-badge">Your turn — roll!</span>
+            )}
+          </div>
         </div>
       </div>
 
@@ -280,8 +349,9 @@ function GameModal({ config, moments }) {
             className="dice"
             animate={gameState.isRolling ? { rotate: [0, 360] } : {}}
             transition={{ duration: 0.2, repeat: gameState.isRolling ? Infinity : 0 }}
+            title={`Dice: ${gameState.diceValue}`}
           >
-            {gameState.diceValue}
+            <DicePips value={gameState.diceValue} />
           </motion.div>
         </div>
 
