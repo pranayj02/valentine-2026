@@ -23,15 +23,10 @@ function App() {
         return res.json()
       })
       .then(data => {
-        // Resolve asset URLs so photos/videos load correctly
         const base = (import.meta.env.BASE_URL || '').replace(/\/$/, '') || ''
-        const resolve = (path) => (path && path.startsWith('/')) ? base + path : path
-        if (data.balloons) {
-          data.balloons = data.balloons.map(b => ({ ...b, asset: resolve(b.asset) }))
-        }
-        if (data.moments) {
-          data.moments = data.moments.map(m => ({ ...m, media: m.media ? resolve(m.media) : null }))
-        }
+        const resolve = (path) => (path && typeof path === 'string' && path.startsWith('/')) ? (base + path) : path
+        if (data.balloons) data.balloons = data.balloons.map(b => ({ ...b, asset: resolve(b.asset) }))
+        if (data.moments) data.moments = data.moments.map(m => ({ ...m, media: m.media ? resolve(m.media) : null }))
         setContent(data)
       })
       .catch(err => console.error('Failed to load content:', err))
@@ -97,7 +92,7 @@ function App() {
               <VideoModal balloon={modalContent} />
             )}
             {modalContent.type === 'game' && (
-              <GameModal config={content.gameConfig} />
+              <GameModal config={content.gameConfig} moments={content.moments} />
             )}
             {modalContent.type === 'calendar' && (
               <CalendarModal moments={content.moments} />

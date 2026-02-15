@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSameDay, getMonth, getYear } from 'date-fns'
 import './CalendarModal.css'
@@ -8,9 +8,24 @@ const MONTHS = [
   'July', 'August', 'September', 'October', 'November', 'December'
 ]
 
+const FILTERS = [
+  { id: 'all', label: 'All' },
+  { id: 'high', label: 'Highs' },
+  { id: 'low', label: 'Lows' },
+]
+
 function CalendarModal({ moments }) {
   const [selectedDate, setSelectedDate] = useState(new Date('2026-01-11'))
   const [selectedMoment, setSelectedMoment] = useState(null)
+  const [filter, setFilter] = useState('all')
+  const [storyPlaying, setStoryPlaying] = useState(false)
+
+  const filteredMoments = useMemo(() => {
+    if (!moments) return []
+    if (filter === 'high') return moments.filter(m => m.mood === 'high')
+    if (filter === 'low') return moments.filter(m => m.mood === 'low')
+    return moments
+  }, [moments, filter])
 
   const monthStart = startOfMonth(selectedDate)
   const monthEnd = endOfMonth(selectedDate)
@@ -19,12 +34,14 @@ function CalendarModal({ moments }) {
   const startPadding = monthStart.getDay()
   const paddingDays = Array(startPadding).fill(null)
 
-  const momentsByDate = moments.reduce((acc, moment) => {
-    const date = new Date(moment.date)
-    const key = format(date, 'yyyy-MM-dd')
-    acc[key] = moment
-    return acc
-  }, {})
+  const momentsByDate = useMemo(() => {
+    return (filteredMoments || []).reduce((acc, moment) => {
+      const date = new Date(moment.date)
+      const key = format(date, 'yyyy-MM-dd')
+      acc[key] = moment
+      return acc
+    }, {})
+  }, [filteredMoments])
 
   const handleDateClick = (day) => {
     setSelectedDate(day)
@@ -43,6 +60,25 @@ function CalendarModal({ moments }) {
     setSelectedMoment(null)
   }
 
+  const runStoryMode = () => {
+    if (!moments?.length) return
+    setStoryPlaying(true)
+    const sorted = [...moments].sort((a, b) => a.date.localeCompare(b.date))
+    let i = 0
+    const next = () => {
+      if (i >= sorted.length) {
+        setStoryPlaying(false)
+        return
+      }
+      const m = sorted[i]
+      setSelectedDate(new Date(m.date))
+      setSelectedMoment(m)
+      i += 1
+      setTimeout(next, 3200)
+    }
+    next()
+  }
+
   return (
     <motion.div
       className="calendar-modal"
@@ -51,6 +87,19 @@ function CalendarModal({ moments }) {
       transition={{ duration: 0.5 }}
     >
       <h2 className="calendar-title">Our Journey</h2>
+
+      <div className="calendar-filters">
+        {FILTERS.map(({ id, label }) => (
+          <button
+            key={id}
+            type="button"
+            className={`calendar-filter-btn ${filter === id ? 'active' : ''}`}
+            onClick={() => setFilter(id)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
 
       <div className="calendar-container">
         <div className="calendar-header">
@@ -139,6 +188,15 @@ function CalendarModal({ moments }) {
           Select a date with a moment to view details
         </div>
       )}
+
+      <button
+        type="button"
+        className="story-mode-btn"
+        onClick={runStoryMode}
+        disabled={storyPlaying || !moments?.length}
+      >
+        {storyPlaying ? 'Playing…' : 'Story mode'}
+      </button>
     </motion.div>
   )
 }

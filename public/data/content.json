@@ -200,22 +200,38 @@
     }
   ],
   "gameConfig": {
-    "boardSize": 30,
-    "finalSquare": 30,
+    "boardSize": 49,
+    "finalSquare": 49,
     "finishingText": "Full Circle! We've been through it all together. Here's to forever. ❤️",
+    "squareMoments": [
+      { "square": 3, "momentId": "first-date" },
+      { "square": 7, "momentId": "valentine" },
+      { "square": 12, "momentId": "lolla1" },
+      { "square": 15, "momentId": "ibis" },
+      { "square": 19, "momentId": "her-bday" },
+      { "square": 22, "momentId": "ben-bohmer" },
+      { "square": 26, "momentId": "us-distance" },
+      { "square": 31, "momentId": "pub-crawl" },
+      { "square": 34, "momentId": "novotel" },
+      { "square": 37, "momentId": "bandra-born" },
+      { "square": 40, "momentId": "my-bday" },
+      { "square": 43, "momentId": "goa" },
+      { "square": 44, "momentId": "worst-night" },
+      { "square": 46, "momentId": "bounce-back" },
+      { "square": 48, "momentId": "one-year" }
+    ],
     "ladders": [
-      { "from": 2, "to": 10 },
-      { "from": 6, "to": 14 },
-      { "from": 11, "to": 20 },
-      { "from": 17, "to": 25 },
-      { "from": 23, "to": 28 }
+      { "from": 7, "to": 14, "momentId": "valentine" },
+      { "from": 19, "to": 25, "momentId": "her-bday" },
+      { "from": 34, "to": 41, "momentId": "novotel" },
+      { "from": 40, "to": 45, "momentId": "my-bday" },
+      { "from": 46, "to": 48, "momentId": "bounce-back" }
     ],
     "snakes": [
-      { "from": 27, "to": 18 },
-      { "from": 22, "to": 12 },
-      { "from": 16, "to": 7 },
-      { "from": 13, "to": 4 },
-      { "from": 9, "to": 3 }
+      { "from": 22, "to": 16, "momentId": "ben-bohmer" },
+      { "from": 26, "to": 20, "momentId": "us-distance" },
+      { "from": 31, "to": 9, "momentId": "pub-crawl" },
+      { "from": 44, "to": 35, "momentId": "worst-night" }
     ]
   }
 }

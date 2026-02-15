@@ -72,7 +72,6 @@ This application draws inspiration from industry-leading design systems like Whi
 - Professional typography and spacing
 
 ## Content Management
-
 All content is managed through `/data/content.json`. Edit this file to update:
 - Site title and subtitle
 - Balloon content and media
